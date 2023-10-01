@@ -1,0 +1,23 @@
+class Solution {
+    public String reverseWords(String s) {
+        StringBuilder st=new StringBuilder();
+        String ans="";
+
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            if(ch!=' '){
+                st.append(ch);
+            }
+            else{
+                st.reverse();
+                ans+=st;
+                ans+=" ";
+                st=new StringBuilder();
+            }
+        }
+        st.reverse();
+        ans+=st;
+        return ans;
+        
+    }
+}

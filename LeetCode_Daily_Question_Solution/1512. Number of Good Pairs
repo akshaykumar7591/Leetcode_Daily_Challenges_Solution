@@ -1,0 +1,40 @@
+----------------------------Brute force approach----------------------
+class Solution {
+    public int numIdenticalPairs(int[] nums) {
+        int n=nums.length;
+        
+        int count=0;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(nums[i]==nums[j])count++;
+            }
+        }
+       
+
+        return count;
+        
+    }
+}
+
+-----------------------------------optimal Solution-----------------
+class Solution {
+    public int numIdenticalPairs(int[] nums) {
+        int n=nums.length;
+        HashMap<Integer,Integer> map=new HashMap<>();
+        int count=0;
+        for(int val:nums){
+            if(map.containsKey(val)){
+                map.put(val,map.get(val)+1);
+            }
+             else map.put(val,1);
+        }
+    
+        for(int val:map.keySet()){
+            count+=(map.get(val)*(map.get(val)-1))/2;
+        }
+
+        return count;
+        
+    }
+}
+

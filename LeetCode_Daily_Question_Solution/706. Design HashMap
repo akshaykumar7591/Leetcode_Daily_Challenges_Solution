@@ -1,0 +1,62 @@
+------------------------------- Approach 1------------------------
+class MyHashMap {
+    HashMap<Integer,Integer> map=new HashMap<>();
+
+
+    public MyHashMap() {
+        
+    }
+    
+    public void put(int key, int value) {
+        map.put(key,value);
+        
+    }
+    
+    public int get(int key) {
+        if(map.get(key)==null)return -1;
+        return map.get(key);
+        
+    }
+    
+    public void remove(int key) {
+        map.remove(key);
+        
+    }
+}
+---------------------------------------Apporach 2-----------------------------
+class MyHashMap {
+   int arr[]=new int[1000003];
+  
+
+
+    public MyHashMap() {
+         for(int i=0;i<1000003;i++ ){
+       arr[i]=Integer.MIN_VALUE;
+   }
+        
+    }
+    
+    public void put(int key, int value) {
+        // list.add(key,value);
+        arr[key]=value;
+        
+        
+    }
+    
+    public int get(int key) {
+        if(arr[key]==Integer.MIN_VALUE)return -1;
+        return arr[key];
+        
+    }
+    
+    public void remove(int key) {
+       arr[key]=Integer.MIN_VALUE;
+
+
+        
+    }
+}
+
+
+
+

@@ -1,0 +1,15 @@
+class Solution {
+   
+    public int[] findArray(int[] pref) {
+       int[] ans=new int[pref.length];
+       if(pref.length==0)return ans;
+       ans[0]=pref[0];
+       int sum=0;
+       for(int i=1;i<pref.length;i++){
+           sum^=ans[i-1];
+           ans[i]=sum^pref[i];
+       }
+
+       return ans; 
+    }
+}

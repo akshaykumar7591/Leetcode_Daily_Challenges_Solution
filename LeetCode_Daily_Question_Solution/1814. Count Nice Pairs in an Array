@@ -1,0 +1,33 @@
+class Solution {
+   public int rev(int num) {
+        int result = 0;
+        while (num > 0) {
+            result = result * 10 + num % 10;
+            num /= 10;
+        }
+        
+        return result;
+    }
+    public int countNicePairs(int[] nums) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        int count=0;
+        int m = (int)1e9+7;
+
+        for(int i=0;i<nums.length;i++){
+            int val=nums[i]-rev(nums[i]);
+            // System.out.println(val);
+            if(map.containsKey(val)){
+                count=( count+map.get(val))%m;
+                map.put(val,(map.get(val)+1)%m);
+            }
+            else {
+                map.put(val%m,1);
+            }
+            
+            
+        }
+        
+        return count;
+        
+    }
+}

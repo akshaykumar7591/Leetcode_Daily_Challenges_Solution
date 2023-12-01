@@ -1,0 +1,10 @@
+class Solution {
+    public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+        String st="";
+        String st2="";
+        for(String val:word1)st+=val;
+        for(String val:word2)st2+=val;
+        return st.equals(st2);
+        
+    }
+}

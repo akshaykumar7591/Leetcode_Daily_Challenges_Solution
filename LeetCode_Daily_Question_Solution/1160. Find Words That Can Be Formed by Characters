@@ -1,0 +1,49 @@
+class Solution {
+    public static boolean possible(String s,HashMap<Character,Integer> map1){
+       HashMap<Character,Integer> map=new HashMap<>();
+
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            if(map.containsKey(ch)){
+                map.put(ch,map.get(ch)+1);
+            }
+            else {
+                map.put(ch,1);
+            }
+        }
+
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            // System.out.println(map.get(ch)+" "+map1.get(ch));
+            if( !map1.containsKey(ch) || map.get(ch)>map1.get(ch))return false;
+        }
+        return true;
+    }
+    public int countCharacters(String[] words, String chars) {
+        HashMap<Character,Integer> map=new HashMap<>();
+
+        for(int i=0;i<chars.length();i++){
+            char ch=chars.charAt(i);
+            if(map.containsKey(ch)){
+                map.put(ch,map.get(ch)+1);
+            }
+            else {
+                map.put(ch,1);
+            }
+        }
+        // System.out.println(map);
+        int sum=0;
+
+        for(int i=0;i<words.length;i++){
+            if(possible(words[i],map)){
+                System.out.println(i);
+                sum+=words[i].length();
+            }
+
+        }
+
+        return sum;
+        
+    }
+}
+// {a=1, b=2, c=3, d=4, e=2, f=5, g=2, h=1, i=3, j=4, k=1, l=2, m=1, n=1, o=1, p=4, r=3, s=2, t=2, u=3, v=5, x=1, y=3, z=2}

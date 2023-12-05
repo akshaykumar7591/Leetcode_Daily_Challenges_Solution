@@ -1,0 +1,22 @@
+class Solution {
+    public int numberOfMatches(int n) {
+        int sum=0;
+        int ans=0;
+        while(n>1){
+            if(n%2==1){
+                ans=(n-1)/2;
+                sum+=ans;
+                ans++;
+
+            }
+            else{
+                 ans=(n)/2;
+                sum+=ans;
+
+            }
+            n=ans;
+        }
+        return sum;
+        
+    }
+}

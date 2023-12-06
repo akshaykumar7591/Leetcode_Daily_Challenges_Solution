@@ -1,0 +1,30 @@
+class Solution {
+    public int totalMoney(int n) {
+        int sum=0;
+        int count=1;
+        int prevMon=1;
+        int week=1;
+        while(n>0){
+            if(week<=7){
+                 System.out.println(count);
+                sum+=count;
+                count++;
+                week++;
+                n--;
+            }
+            else{
+                // System.out.println(sum);
+                week=1;
+                prevMon++;
+                //  System.out.println(prevMon);
+                count=prevMon;
+                //  System.out.println(count);
+
+            }
+            // n--;
+
+        }
+       return sum;  
+        
+    }
+}

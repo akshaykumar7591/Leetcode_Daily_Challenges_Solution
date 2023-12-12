@@ -1,0 +1,38 @@
+class Solution {
+    public class Pair implements Comparable<Pair>{
+        int val ;
+        int idx;
+
+        public int compareTo(Pair o){
+            return o.val-this.val;
+        }
+    }
+    public int maxProduct(int[] nums) {
+        int max=0;
+        PriorityQueue<Pair> pq=new PriorityQueue<>();
+        for(int i=0;i<nums.length;i++){
+            nums[i]=nums[i]-1;
+            Pair value=new Pair();
+            value.val=nums[i];
+            value.idx=i;
+
+            pq.add(value);
+
+            
+        }
+        // for(int i=0;i<nums.length;i++){
+        //     for(int j=i+1;j<nums.length;j++){
+        //         int val=nums[i]*nums[j];
+        //         max=Math.max(max,val);
+        //     }
+        // }
+        System.out.print(pq.peek().val);
+         for(int i=0;i<nums.length;i++){
+             if(pq.peek().idx!=i)  max=Math.max(max,nums[i]*pq.peek().val);
+        }
+
+        return max;
+
+        
+    }
+}

@@ -1,0 +1,31 @@
+class Solution {
+    public static boolean isPossible (int [][] mat,int i,int j){
+        int col=0;
+        while(col<mat[0].length){
+            if( col!=j && mat[i][col]==1)return false;
+            col++;
+        }
+        int row=0;
+        while(row<mat.length){
+            if( row!=i && mat[row][j]==1)return false;
+            row++;
+        }
+
+        return true;
+    }
+
+    public int numSpecial(int[][] mat) {
+        int count=0;
+
+        for(int i=0;i<mat.length;i++){
+            for(int j=0;j<mat[i].length;j++){
+                if( mat[i][j]==1 && isPossible(mat,i,j)){
+                    count++;
+                }
+            }
+        }
+
+        return count;
+        
+    }
+}

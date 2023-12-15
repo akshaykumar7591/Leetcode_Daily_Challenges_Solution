@@ -1,0 +1,35 @@
+class Solution {
+    public String destCity(List<List<String>> paths) {
+        HashMap<String ,String > map=new HashMap<>();
+        HashMap<String ,Boolean> source=new HashMap<>();
+
+        for(int i=0;i<paths.size();i++){
+            map.put(paths.get(i).get(0),paths.get(i).get(1));
+
+            source.put(paths.get(i).get(1),false);
+            source.put(paths.get(i).get(0),true);
+
+            // if(source.get(paths.get(i).get(0))==true){
+            //     source.put(paths.get(i).get(0),false);
+
+            // }
+            
+        }
+        String ans="";
+        for(String val:source.keySet()){
+            if(source.get(val)==true)ans=val;
+            
+        }
+        System.out.print(ans);
+        while(ans!=null){
+            if(map.containsKey(ans)){
+                ans=map.get(ans);
+
+            }
+            else break;
+        }
+
+        return ans;
+        
+    }
+}

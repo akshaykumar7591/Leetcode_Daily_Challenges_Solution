@@ -1,0 +1,17 @@
+class Solution {
+    public int minCost(String colors, int[] neededTime) {
+        int count=0;
+        for(int i=1;i<colors.length();i++){
+            char ch=colors.charAt(i);
+            char pre=colors.charAt(i-1);
+
+            if(ch==pre){
+                int val=Math.min(neededTime[i],neededTime[i-1]);
+                count+=val;
+                if(val==neededTime[i])neededTime[i]=neededTime[i-1];
+                // System.out.println(val);
+            }
+        }
+        return count;
+    }
+}

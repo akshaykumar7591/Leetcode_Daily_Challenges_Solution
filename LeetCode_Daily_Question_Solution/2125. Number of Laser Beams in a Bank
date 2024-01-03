@@ -1,0 +1,25 @@
+class Solution {
+    public int numberOfBeams(String[] bank) {
+        if(bank.length==0)return 0;
+        ArrayList<Integer> list=new ArrayList<>();
+        for(int i=0;i<bank.length;i++){
+            int count=0;
+            for(int j=0;j<bank[i].length();j++){
+                char ch=bank[i].charAt(j);
+                if(ch=='1')count++;
+            }
+            if(count!=0)list.add(count);
+        }
+
+        if(list.size()==0)return 0;
+
+        int ans=0;
+        for(int i=0;i<list.size()-1;i++){
+            ans+=list.get(i)*list.get(i+1);
+
+        }
+
+        return ans;
+        
+    }
+}

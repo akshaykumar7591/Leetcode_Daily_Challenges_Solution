@@ -1,0 +1,30 @@
+class Solution {
+    public int minOperations(int[] nums) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int val:nums){
+            map.put(val,map.getOrDefault(val,0)+1);
+        }
+        int count=0;
+        for(int val:map.keySet()){
+            if(map.get(val)==1)return -1;
+            int num=map.get(val);
+            // System.out.println(num);
+            if (num==2 )count++;
+            else if(num==4)count+=2;
+            else if(num%3==0){
+                count+=(num/3);
+            }
+            else if(num%3==2){
+                count+=(num/3);
+                count++;
+            }
+            else{
+                System.out.println('1');
+                count+=num/3;
+                count+=1;
+            }
+        }
+        return count;
+        
+    }
+}

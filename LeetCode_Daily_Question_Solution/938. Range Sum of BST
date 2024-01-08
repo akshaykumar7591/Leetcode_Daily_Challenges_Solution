@@ -1,0 +1,17 @@
+class Solution {
+    public static void helper(TreeNode root,int low,int high,int[] arr){
+        if(root==null)return;
+        if(root.val>=low && root.val<=high){
+            arr[0]+=root.val;
+        }
+         helper(root.left,low,high,arr);
+         helper(root.right,low,high,arr);
+
+    }
+    public int rangeSumBST(TreeNode root, int low, int high) {
+        int[] arr=new int[1];
+        helper(root,low,high,arr);
+        return  arr[0];
+        
+    }
+}

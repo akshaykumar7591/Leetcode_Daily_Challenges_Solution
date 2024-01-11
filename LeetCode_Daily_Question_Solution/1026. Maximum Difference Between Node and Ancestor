@@ -1,0 +1,24 @@
+class Solution {
+    public static int distance(TreeNode root,int val){
+        if(root==null)return 0;
+        int left=0;
+        int right=0;
+        if(root.left!=null)left=Math.abs(val-root.left.val);
+        if(root.right!=null)right=Math.abs(val-root.right.val);
+        int a=distance(root.left,val);
+        int b=distance(root.right,val);
+        int max=Math.max(a,b);
+
+        return Math.max(max,Math.max(left,right));
+    }
+    public int maxAncestorDiff(TreeNode root) {
+        if(root==null)return 0;
+        int left=distance(root,root.val);
+        int right=distance(root,root.val);
+        int a=maxAncestorDiff(root.left);
+        int b=maxAncestorDiff(root.right);
+        int max=Math.max(a,b);
+        return Math.max(max,Math.max(left,right));
+        
+    }
+}

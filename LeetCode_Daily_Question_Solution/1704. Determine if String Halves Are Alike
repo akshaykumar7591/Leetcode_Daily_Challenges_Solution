@@ -1,0 +1,23 @@
+class Solution {
+    public static int count(String s){
+        int count1=0;
+         String st = s.toLowerCase();
+
+        for(int i=0;i<st.length();i++){
+            char ch=st.charAt(i);
+            if(ch=='a'||ch=='e' || ch=='i' || ch=='o' || ch=='u')count1++;
+        }
+        return count1;
+    }
+    public boolean halvesAreAlike(String s) {
+       
+        int n=s.length();
+        int a=count(s.substring(0,n/2));
+        int b=count(s.substring((n/2),n));
+        
+       System.out.print(a+" " +b);
+
+        return a==b?true:false;
+        
+    }
+}

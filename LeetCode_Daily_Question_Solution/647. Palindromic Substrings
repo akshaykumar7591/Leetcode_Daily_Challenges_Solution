@@ -1,0 +1,22 @@
+class Solution {
+    public static boolean palindrome(String st){
+        int i=0;
+        int j=st.length()-1;
+        while(i<=j){
+            if(st.charAt(i)!=st.charAt(j))return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+    public int countSubstrings(String s) {
+        int count=0;
+        for(int i=0;i<s.length();i++){
+            for(int j=i+1;j<=s.length();j++){
+                String st=s.substring(i,j);
+                if(palindrome(st))count++;
+            }
+        }
+        return count;
+    }
+}

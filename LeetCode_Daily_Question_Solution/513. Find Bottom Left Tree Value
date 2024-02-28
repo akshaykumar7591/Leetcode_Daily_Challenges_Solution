@@ -1,0 +1,22 @@
+class Solution {
+    public static int height(TreeNode root){
+        if(root==null || (root.left==null && root.right==null))return 0;
+        return 1+Math.max(height(root.left),height(root.right));
+    }
+    public static void helper(TreeNode root,int level,int[] arr){
+        if(root==null)return ;
+
+        if(level==0)arr[0]=root.val;
+        helper(root.right,level-1,arr);
+        helper(root.left,level-1,arr);
+    }
+    public int findBottomLeftValue(TreeNode root) {
+        int level=height(root);
+
+        int[] arr=new int[1];
+        helper(root,level,arr);
+        return arr[0];
+
+        
+    }
+}

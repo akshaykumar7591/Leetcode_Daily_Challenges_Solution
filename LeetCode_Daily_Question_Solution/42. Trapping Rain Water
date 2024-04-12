@@ -1,0 +1,24 @@
+class Solution {
+    public int trap(int[] height) {
+        // using stack 
+        int max=0;
+        int n= height.length;
+        Stack<Integer> st=new Stack<>();
+        for(int i=0;i<n;i++){
+            while(st.size()>0 && height[st.peek()]<=height[i]){
+                int top=height[st.pop()];
+                if(st.size()==0)break;
+                int min=Math.min(height[st.peek()],height[i]);
+                max+=(min-top)*(i-st.peek()-1);
+
+            }
+
+            
+            st.push(i);
+
+        }
+        return max;
+
+        
+    }
+}

@@ -1,0 +1,57 @@
+class Solution {
+    public static int histogram(int[] arr){
+        int n=arr.length;
+        int max=0;
+        Stack<Integer> st=new Stack<>();
+        st.push(-1);
+        st.push(0);
+
+        for(int i=1;i<=n;i++){
+
+            int val= i==n?0:arr[i];
+
+            while(st.peek()!=-1 && arr[st.peek()]>=val){
+                int rm=i;
+                int height=arr[st.pop()];
+                int lm=st.peek();
+                max=Math.max(max,height*(rm-lm-1));
+            }
+            st.push(i);
+
+        }
+
+        return max;
+    }
+    public int maximalRectangle(char[][] matrix) {
+
+        int m=matrix[0].length;
+        int[] arr=new int[m];
+
+         int max=0;
+
+        for(int j=0;j<m;j++){
+            arr[j]=matrix[0][j]-'0';
+            // System.out.println(arr[j]);
+        }
+        max=Math.max(max,histogram(arr));  // 1st row
+        // System.out.println(histogram(arr));
+
+        for(int i=1;i<matrix.length;i++){
+            for(int j=0;j<m;j++){
+                if(matrix[i][j]=='1'){
+                    arr[j]++;
+                }
+                else{
+                    arr[j]=0;
+                }
+                // System.out.println(/arr[j]);
+            }
+            max=Math.max(max,histogram(arr));
+            // System.out.println(histogram(arr));
+        }
+
+
+      return max;
+        
+    }
+}

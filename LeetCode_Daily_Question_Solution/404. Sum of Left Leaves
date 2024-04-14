@@ -1,0 +1,34 @@
+class Solution {
+    public TreeNode prev=null;
+    public TreeNode leftLeaves(TreeNode root){
+        while(root!=null && root.left!=null){
+            root=root.left;
+        }
+        return root;
+
+    }
+
+    public void helper(TreeNode root,int[] arr){
+        if(root==null)return ;
+        
+
+        TreeNode temp=leftLeaves(root);
+        
+        if(prev!=temp && temp!=root && temp.left==null && temp.right==null){
+            arr[0]+=temp.val;
+        }
+        prev=temp;
+
+        helper(root.left,arr);
+        helper(root.right,arr);
+    }
+    public int sumOfLeftLeaves(TreeNode root) {
+        int[] arr=new int[1];
+        prev=null;
+
+        helper(root,arr);
+
+        return arr[0];
+        
+    }
+}

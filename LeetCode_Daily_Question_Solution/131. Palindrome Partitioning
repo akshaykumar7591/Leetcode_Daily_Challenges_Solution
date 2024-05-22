@@ -1,0 +1,38 @@
+class Solution {
+    public static boolean palindrome(String s){
+        int i=0;
+        int j=s.length()-1;
+        while(i<=j){
+            if(s.charAt(i)!=s.charAt(j)){
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+    public static void partion(String s,int idx,List<List<String>> ans,List<String> list){
+  if(s.length()==0){
+      ans.add(new ArrayList<>(list));
+      return;
+  }
+  for(int i=1;i<=s.length();i++){
+      String st=s.substring(0,i);
+      if(palindrome(st)){
+          list.add(st);
+          partion(s.substring(i),idx+1,ans,list);
+          list.remove(list.size()-1);
+      }
+
+  }
+
+
+    }
+    public List<List<String>> partition(String s) {
+        List<List<String>> ans=new ArrayList<>();
+        List<String> list=new ArrayList<>();
+        partion(s,0,ans,list);
+        return ans;
+        
+    }
+}

@@ -1,0 +1,50 @@
+class Solution {
+    public boolean possible(char ch,ArrayList<HashMap<Character,Integer>> st){
+        for(int i=1;i<st.size();i++){
+            boolean flag=false;
+// System.out.println(st.get(i).keySet());
+            for(char key:st.get(i).keySet()){
+                if(key==ch){
+                    flag=true;
+                   break;
+                }
+            }
+            if(flag==false)return false;
+            else{
+                 if(st.get(i).get(ch)==1){
+                        st.get(i).remove(ch);
+                    }
+                    else{
+                        st.get(i).put(ch,st.get(i).get(ch)-1);
+                    }
+            }
+        }
+        return true;
+    }
+    public List<String> commonChars(String[] words) {
+        List<String> ans=new ArrayList<>();
+         
+         ArrayList<HashMap<Character,Integer>> st=new ArrayList<>();
+
+         for(int i=0;i<words.length;i++){
+            HashMap<Character,Integer> map=new HashMap<>();
+
+            for(int j=0;j<words[i].length();j++){
+                char ch=words[i].charAt(j);
+                map.put(ch,map.getOrDefault(ch,0)+1);
+            }
+            st.add(map);
+         }
+
+         for(int i=0;i<words[0].length();i++){
+            char ch=words[0].charAt(i);
+            if(possible(ch,st)){
+                ans.add(""+ch);
+            }
+            
+         }
+        //  System.out.println(st.get(0));
+         return ans;
+        
+    }
+}

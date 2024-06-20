@@ -1,0 +1,38 @@
+class Solution {
+    public static  boolean possible(int []arr,int mid,int m){
+        int countBalls=1;
+        int distance=arr[0];
+        for(int i=1;i<arr.length;i++){
+
+            if(arr[i]-distance>=mid){
+                countBalls++;
+                distance=arr[i];
+           }
+           
+        }
+
+        return m<=countBalls;
+
+
+    }
+    public int maxDistance(int[] position, int m) {
+        Arrays.sort(position);
+        int l=0;
+        int h=position[position.length-1];
+        int ans=0;
+        while(l<=h){
+            int mid=l+(h-l)/2;
+            if(possible(position,mid,m)){
+                ans=mid;
+                l=mid+1;
+
+            }
+            else{
+                h=mid-1;
+
+            }
+        }
+        return ans;
+        
+    }
+}

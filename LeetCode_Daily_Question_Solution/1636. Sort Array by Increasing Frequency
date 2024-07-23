@@ -1,0 +1,40 @@
+class Solution {
+    public int[] frequencySort(int[] nums) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int val:nums){
+            map.put(val,map.getOrDefault(val,0)+1);
+        }
+
+        int[] ans=new int[nums.length];
+        int i=0;
+
+        int j=1;
+        while(j<=nums.length){
+            ArrayList<Integer> list=new ArrayList<>();
+            for(int val:map.keySet()){
+                if(map.get(val)==j){
+                    list.add(val);
+                }
+            }
+            if(list.size()==1){
+                System.out.println(list.get(0));
+               for(int l=0;l<map.get(list.get(0));l++){
+                        ans[i++]=list.get(0);
+                    }
+            }
+            else{
+                Collections.sort(list);
+
+                for(int k=list.size()-1;k>=0;k--){
+                    for(int l=0;l<map.get(list.get(k));l++){
+                        ans[i++]=list.get(k);
+                    }
+                }
+            }
+            j++;
+        }
+
+        return ans;
+        
+    }
+}

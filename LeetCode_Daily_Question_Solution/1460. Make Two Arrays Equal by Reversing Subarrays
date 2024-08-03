@@ -1,0 +1,17 @@
+class Solution {
+    public boolean canBeEqual(int[] target, int[] arr) {
+       int[] fre=new int[1001];
+
+       for(int val:target)fre[val]++;
+
+       for(int val:arr)fre[val]--;
+
+       for(int val:fre)if(val!=0)return false;
+
+       return true;
+
+
+        
+        
+    }
+}

@@ -1,0 +1,26 @@
+class Solution {
+    public int getLucky(String s, int k) {
+        Map<Character,Integer> map=new HashMap<>();
+
+        for(int i=1;i<=26;i++)map.put((char)(96+i),i);
+         String ans="";
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            ans+=map.get(ch);
+
+        }
+
+     
+        while(k>0){
+            int sum=0;
+            for(int i=0;i<ans.length();i++){
+                sum+=Integer.parseInt(ans.charAt(i)+"");
+            }
+            ans=""+sum;
+            k--;
+        }
+
+        return Integer.parseInt(ans);
+        
+    }
+}

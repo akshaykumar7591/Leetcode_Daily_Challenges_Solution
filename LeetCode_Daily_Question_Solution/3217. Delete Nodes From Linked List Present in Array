@@ -1,0 +1,32 @@
+
+class Solution {
+    public ListNode modifiedList(int[] nums, ListNode head) {
+        HashSet<Integer> set=new HashSet<>();
+        for(int val:nums)set.add(val);
+        ListNode temp=head;
+        ListNode dummy=new ListNode(-1);
+        ListNode prev=dummy;
+
+        while(temp!=null){
+            boolean flag=true;
+            while(temp!=null && set.contains(temp.val)){
+                ListNode next=temp.next;
+                temp.next=null;
+                temp=next;
+                prev.next=temp;
+                flag=false;
+
+            }
+            
+           if(flag) prev.next=temp;
+            
+            prev=temp;
+            if(temp!=null)temp=temp.next;
+        }
+
+
+
+        return dummy.next; 
+        
+    }
+}

@@ -1,0 +1,20 @@
+class Solution {
+   public void possible(int idx,int n,List<Integer> ans){
+    if(idx>n)return ;
+    int i=0;
+    if(idx==0)i=1;
+
+    for(int j=i;j<10;j++){
+        if(idx*10+j<=n)ans.add(idx*10+j);
+        possible(idx*10+j,n,ans);
+    }
+   }
+    public List<Integer> lexicalOrder(int n) {
+
+        List<Integer> ans = new ArrayList<>();
+
+        possible(0, n, ans);
+        return ans;
+
+    }
+}

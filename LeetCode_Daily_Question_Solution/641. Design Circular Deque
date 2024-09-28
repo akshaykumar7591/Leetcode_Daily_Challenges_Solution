@@ -1,0 +1,110 @@
+class MyCircularDeque {
+   private class Node{
+       int data;
+       Node next,pre;
+        public Node(){
+        //    data=null;
+       }
+       public Node(int val){
+           data=val;
+       }
+       public void delete(){
+           pre.next=next;
+           next.pre=pre;
+
+       }
+   }
+   private Node front;
+   private Node rear;
+   int size=0;
+   int idx=0;
+    public MyCircularDeque(int k) {
+        front=new Node();
+        rear=new Node();
+        front.next=rear;
+        rear.pre=front;
+        size=k;
+
+        
+    }
+    
+    public boolean insertFront(int value) {
+        if(size==idx)return false;
+        idx++;
+        Node n=new Node(value);
+        n.pre=front;
+        n.next=front.next;
+        front.next=n;
+        n.next.pre=n;
+         return true;
+        
+    }
+    
+    public boolean insertLast(int value) {
+        if(size==idx)return false;
+        idx++;
+        Node n=new Node(value);
+        n.next=rear;
+        n.pre=rear.pre;
+        n.pre.next=n;
+        rear.pre=n;
+          return true;
+        
+    }
+    
+    public boolean deleteFront() {
+         if(idx==0)return false;
+         idx--;
+         Node n=front.next;
+         int value= n.data;
+         n.delete();
+          return true;
+        
+    }
+    
+    public boolean deleteLast() {
+         if(idx==0)return false;
+         idx--;
+         Node n=rear.pre;
+         int value=n.data;
+         n.delete();
+         return true;
+
+        
+    }
+    
+    public int getFront() {
+        if(idx==0)return -1;
+         return  front.next.data;
+        
+    }
+    
+    public int getRear() {
+        if(idx==0)return -1;
+         return  rear.pre.data;
+        
+    }
+    
+    public boolean isEmpty() {
+        return idx==0;
+        
+    }
+    
+    public boolean isFull() {
+        return size==idx;
+        
+    }
+}
+
+/**
+ * Your MyCircularDeque object will be instantiated and called as such:
+ * MyCircularDeque obj = new MyCircularDeque(k);
+ * boolean param_1 = obj.insertFront(value);
+ * boolean param_2 = obj.insertLast(value);
+ * boolean param_3 = obj.deleteFront();
+ * boolean param_4 = obj.deleteLast();
+ * int param_5 = obj.getFront();
+ * int param_6 = obj.getRear();
+ * boolean param_7 = obj.isEmpty();
+ * boolean param_8 = obj.isFull();
+ */

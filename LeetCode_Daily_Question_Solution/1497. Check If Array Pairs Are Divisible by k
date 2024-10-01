@@ -1,0 +1,36 @@
+class Solution {
+    public boolean canArrange(int[] arr, int k) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+
+        for(int val:arr){
+            int rem=val%k;
+            if(rem<0)rem+=k;
+
+            map.put(rem,map.getOrDefault(rem,0)+1);
+
+        }
+        for(int val:arr){
+            int rem=val%k;
+            if(rem<0)rem+=k;
+
+            if(rem==0){
+                if(map.get(rem)%2==1){
+                    return false;
+                }
+            }
+           else if(rem*2==k){
+            if(map.get(rem)%2==1)return false;
+
+            }
+            else{
+                int fq=map.get(rem);
+                int ofq=map.getOrDefault(k-rem,0);
+                if(ofq!=fq)return false;
+            }
+
+        }
+
+        return true;
+
+    }
+}

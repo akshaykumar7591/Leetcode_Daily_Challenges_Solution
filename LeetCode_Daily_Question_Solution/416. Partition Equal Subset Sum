@@ -1,0 +1,40 @@
+class Solution {
+    public boolean path(int idx,int tar,int[] arr,boolean[][] dp){
+        if(tar==0)return true;
+        if(idx==0){
+             return arr[idx]==tar;
+        }
+        if(dp[idx][tar]!=false)return dp[idx][tar];
+        boolean taken=path(idx-1,tar-arr[idx],arr,dp);
+        boolean nottaken=path(idx-1,tar,arr,dp);
+
+        return dp[idx][tar]=taken || nottaken;
+    }
+    public boolean canPartition(int[] nums) {
+
+        int sum=0;
+        int n=nums.length;
+        if(n==1)return false;
+        for(int val:nums)sum+=val;
+        if(sum%2==1)return false;
+        boolean[][] dp=new boolean[n][sum+1];
+        sum/=2;
+        
+        for(int i=0;i<n;i++)dp[i][0]=true;
+        dp[0][nums[0]]=true;
+        
+        for(int i=1;i<n;i++){
+            for(int tar=1;tar<=sum;tar++){
+                 boolean taken=false;
+                if(tar>=nums[i])taken=dp[i-1][tar-nums[i]];
+                boolean notTaken=dp[i-1][tar];
+                
+                dp[i][tar]= taken || notTaken;
+                
+            }
+        }
+         return dp[n-1][sum];
+        // return path(n-1,sum/2,nums,dp);
+        
+    }
+}

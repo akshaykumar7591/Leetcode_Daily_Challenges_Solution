@@ -1,0 +1,38 @@
+class Solution {
+
+    public int path(int r, int c, int row, List<List<Integer>> arr, int[][] dp) {
+        if (r == row - 1)
+            return arr.get(r).get(c);
+        if (dp[r][c] != 0)
+            return dp[r][c];
+        int min = Integer.MAX_VALUE;
+        int bottom = path(r + 1, c, row, arr, dp);
+        int bottom1 = path(r + 1, c + 1, row, arr, dp);
+
+        min = Math.min(bottom + arr.get(r).get(c), bottom1 + arr.get(r).get(c));
+
+        dp[r][c] = min;
+        return min;
+    }
+
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int m = triangle.size();
+        int[][] dp = new int[m][m];
+        for(int i=0;i<m;i++){
+            dp[m-1][i]=triangle.get(m-1).get(i);
+        }
+
+        for(int i=m-2;i>=0;i--){
+            for(int j=0;j<=i;j++){
+                int d=triangle.get(i).get(j)+dp[i+1][j];
+                int d1=triangle.get(i).get(j)+dp[i+1][j+1];
+                 dp[i][j]=Math.min(d,d1);
+                //  System.out.print(dp[i][j]+" ");
+            }
+            System.out.println();
+        }
+        return dp[0][0];
+        // return path(0, 0, m, triangle, dp);
+
+    }
+}

@@ -4,7 +4,7 @@ class Solution {
         // List to track the last node at each depth
         List<TreeNode> levels = new ArrayList<>();
         int index = 0, n = traversal.length();
-
+  
         while (index < n) {
             // Count depth (number of dashes)
             int depth = 0;
